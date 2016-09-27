@@ -3,13 +3,36 @@ using System.Collections;
 
 public class InventoryPanel : ManaPanel {
 
-	// Use this for initialization
+    private bool inventoryPanelOpen;
+
 	void Start () {
-	
+        
 	}
+
+     
+    public bool InventoryPanelOpen
+    {
+        get
+        {
+            
+            return inventoryPanelOpen;
+        }
+
+        set
+        {
+            inventoryPanelOpen = value;
+
+            if (inventoryPanelOpen == true)
+            {
+                Debug.Log("Inventory panel open");
+            }
+
+            if (inventoryPanelOpen == false)
+            {
+                Debug.Log("Inventory panel closed");
+            }
+        }
+    }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

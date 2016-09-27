@@ -1,0 +1,40 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CharacterManager {
+    
+    private GameObject selectedChar;
+    private GameObject boyChar;
+    private GameObject dogChar;
+
+    private GameObject[] enemies;
+    
+	public void InitialiseChar () {
+        //find player characters from hierarchy
+        boyChar = GameObject.FindGameObjectWithTag("PlayerBoy");
+        dogChar = GameObject.FindGameObjectWithTag("PlayerDog");
+        //set default initial player character to boy
+        selectedChar = boyChar; 
+
+        Debug.Log(selectedChar);
+	}
+    
+    public void ChangeChar()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+
+            if (selectedChar == boyChar)
+            {
+                selectedChar = dogChar;
+                Debug.Log("Changed char to Dog");
+
+            }else if (selectedChar == dogChar)
+            {
+                selectedChar = boyChar;
+                Debug.Log("Changed char to Boy");
+            }
+
+        }
+    }
+}
