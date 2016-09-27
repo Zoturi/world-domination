@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\ManaPanel.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\VisualCharacter.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

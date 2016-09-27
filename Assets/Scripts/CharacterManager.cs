@@ -16,7 +16,7 @@ public class CharacterManager {
         //set default initial player character to boy
         selectedChar = boyChar; 
 
-        Debug.Log(selectedChar);
+        Debug.Log("Starting game as " + selectedChar);
 	}
     
     public void ChangeChar()
@@ -37,4 +37,6 @@ public class CharacterManager {
 
         }
     }
+
+    
 }

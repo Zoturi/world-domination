@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Character {
 
+    public VisualCharacter visualCharacterScript;
+
     private string nameBoy;
     private string nameDog;
 

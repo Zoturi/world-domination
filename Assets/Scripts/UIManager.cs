@@ -14,9 +14,8 @@ public class UIManager {
     {
         //initialise panels
         manaPanel.InitialisePanel();
-        //inventoryPanel.InitialisePanel();
+        inventoryPanel.InitialisePanel();
         characterPanel.InitialisePanel();
-
         
     }
 
@@ -26,10 +25,11 @@ public class UIManager {
         {
             //open or close inventory panel
             if (inventoryPanel.InventoryPanelOpen == false)
-            { 
+            {
                 inventoryPanel.InventoryPanelOpen = true;
-                
-            }else if (inventoryPanel.InventoryPanelOpen == true)
+
+            }
+            else if (inventoryPanel.InventoryPanelOpen == true)
             {
                 inventoryPanel.InventoryPanelOpen = false;
             }
