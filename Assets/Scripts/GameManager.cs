@@ -3,55 +3,87 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
+    public static bool isAlive;
+    public static int health;
     //variables
-    public GameObject goInventoryPanel;
-    public GameObject goCharacterPanel;
+    
+   
     public int amountOfItemsInInventory;
 
-    private InventoryPanel inventoryPanelScript;
-
-    private bool isAlive;
-    private int health;
+    //private InventoryPanel inventoryPanelScript;
+    /*
     private int mana;
     private int level;
     private int attack;
     private int defence;
-    private GameObject[] itemsFromInventory;
-
+    
+    */
     //properties
-    public bool IsAlive { get; set; }
+    /*public bool IsAlive { get; set; }
     public int Health { get; set; }
     public int Mana { get; set; }
     public int Level { get; set; }
     public int Attack { get; set; }
     public int Defense { get; set; }
-
+    */
     public GameObject goBow;
     public GameObject goSword;
+
+    public GameObject goInventoryPanel;
+    public GameObject goCharacterPanel;
+
+    public InventoryPanel inventoryPanelScript;
+    public CharacterPanel characterPanelScript;
 
     public CharacterManager characterManager = new CharacterManager();
     public UIManager uiManager = new UIManager();
     public Inventory inventory = new Inventory();
 
+    public Character character = new Character();
+    //public static Character character = null;
 
+    private GameObject[] itemsFromInventory;
     void Awake()
     {
+        //Check if instance already exists
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        /*inventoryPanelScript = goInventoryPanel.GetComponent<InventoryPanel>();
+
+        InventoryPanel test = GameObject.Find("InventoryPanel").GetComponent<InventoryPanel>();
+
+        uiManager.inventoryPanel = test;
+
+        Debug.Log("InviGM: " + test);
+        */
+
         characterManager.InitialiseChar();
 
-
         
-        //add here items that go in the inventory
+
+        //add items that go in the inventory here
         inventory.ItemsInInventory[0] = goBow;
         inventory.ItemsInInventory[1] = goSword;
+
         //get the amount of items in the inventory, to use in InventoryPanel
         amountOfItemsInInventory = inventory.GetAmountOfItemsInInventory();
 
         //inventory.GetInventory();
+
+        
     }
 
     void Start()
     {
-        IsAlive = true;
+        isAlive = true;
         health = 30;
         
     }
@@ -64,41 +96,53 @@ public class GameManager : MonoBehaviour
 
         if (uiManager.inventoryPanel.InventoryPanelOpen == true)
         {
-            InventoryPanelOpened();
+            if (!goInventoryPanel.activeInHierarchy)
+            { 
+                InventoryPanelOpened();
+            }
         }
 
         if (uiManager.inventoryPanel.InventoryPanelOpen == false)
         {
-            InventoryPanelClosed();  
+            if (goInventoryPanel.activeInHierarchy)
+            {
+                InventoryPanelClosed();
+            }
         }
 
         if (uiManager.characterPanel.CharacterPanelOpen == true)
         {
-            CharacterPanelOpened();
+            if (!goCharacterPanel.activeInHierarchy)
+            {
+                CharacterPanelOpened();
+            }
         }
 
         if (uiManager.characterPanel.CharacterPanelOpen == false)
         {
-            CharacterPanelClosed();
+            if (goCharacterPanel.activeInHierarchy)
+            {
+                CharacterPanelClosed();
+            }
         }
 
     }
 
     void InventoryPanelOpened()
     {
-        if (goInventoryPanel == null)
+       if (goInventoryPanel == null)
         {
-            GameObject instance = Instantiate(Resources.Load("InventoryPanel", typeof(GameObject))) as GameObject;
+            //GameObject instance = Instantiate(Resources.Load("InventoryPanel", typeof(GameObject))) as GameObject;
 
-            goInventoryPanel = instance;
-            inventoryPanelScript = goInventoryPanel.GetComponent<InventoryPanel>();
-
+            //goInventoryPanel = instance;
+            //inventoryPanelScript = goInventoryPanel.GetComponent<InventoryPanel>();
+           
         }
-
+        
         if (goInventoryPanel != null)
         {
             if (goInventoryPanel.activeSelf == false)
-            { 
+            {
                 goInventoryPanel.SetActive(true);
 
                 //get the items in inventory
@@ -107,9 +151,14 @@ public class GameManager : MonoBehaviour
                 //set items from inventory to inventory panel (I got stumped by this, so I had to come up with something)
                 //should check for length and expand from that, but here we set only bow and sword, as we now there is no more
                 inventoryPanelScript.SetInvPanelItems(itemsFromInventory[0], 0);
-                inventoryPanelScript.SetInvPanelItems(itemsFromInventory[1], 1);
+                inventoryPanelScript.SetInvPanelItems(itemsFromInventory[0], 1);
 
-                inventoryPanelScript.InstantiateInvPanelItems();
+                //InventoryPanel.instance.SetInvPanelItems(itemsFromInventory[0], 0);
+                //InventoryPanel.instance.SetInvPanelItems(itemsFromInventory[1], 1);
+
+                //InventoryPanel.instance.InstantiateInvPanelItems();
+
+
             }
 
             //goInventoryPanel.amoun inventory.ItemsInInventory();

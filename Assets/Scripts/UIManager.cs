@@ -6,17 +6,23 @@ public class UIManager {
     //Panels
     public InventoryPanel inventoryPanel = new InventoryPanel();
     public CharacterPanel characterPanel = new CharacterPanel();
-    public ManaPanel manaPanel;
     
     
-
-    void Start()
+    public UIManager()
     {
+        //inventoryPanel = ipGo.GetComponent<InventoryPanel>();
+        //characterPanel = cp;
         //initialise panels
-        manaPanel.InitialisePanel();
+        Initialize();
+        
+        
+    }
+
+    public void Initialize()
+    {
+        
         inventoryPanel.InitialisePanel();
         characterPanel.InitialisePanel();
-        
     }
 
     public void OpenPanels()
@@ -41,7 +47,6 @@ public class UIManager {
             if (characterPanel.CharacterPanelOpen == false)
             {
                 characterPanel.CharacterPanelOpen = true;
-
             }
             else if (characterPanel.CharacterPanelOpen == true)
             {

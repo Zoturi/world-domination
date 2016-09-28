@@ -3,6 +3,8 @@ using System.Collections;
 
 public class InventoryPanel : ManaPanel {
 
+    //public static InventoryPanel instance = null;
+
     private bool inventoryPanelOpen;
 
     private int amountOfItemsInInventory;
@@ -11,13 +13,32 @@ public class InventoryPanel : ManaPanel {
 
     //public int AmountOfItems { get; set; }
 
-    private GameManager gameManagerScript;
+    //private GameManager gameManagerScript;
     
     void OnEnable()
     {
         //find gmScript to get the amount of items in inv value..yeah, not a good way
-        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        amountOfItemsInInventory = gameManagerScript.amountOfItemsInInventory;
+        // gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //amountOfItemsInInventory = gameManagerScript.amountOfItemsInInventory;
+        RefreshPanel();
+    }
+
+    void Awake()
+    {
+        //inventoryPanelOpen = true;
+        //Check if instance already exists
+        /*if (instance == null)
+        {
+            instance = this;
+            
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }*/
+
+        
+
     }
 
     public void SetInvPanelItems(GameObject item, int index)
@@ -37,6 +58,7 @@ public class InventoryPanel : ManaPanel {
 
     public void InstantiateInvPanelItems()
     {
+        amountOfItemsInInventory = GameManager.instance.amountOfItemsInInventory;
         for (int i = 0; i < amountOfItemsInInventory; i++)
         {
             //Debug.Log(!transform.Find(items[i].gameObject.name + "(Clone)"));
@@ -66,8 +88,6 @@ public class InventoryPanel : ManaPanel {
             if (inventoryPanelOpen == true)
             {
                 Debug.Log("Inventory panel open");
-                   
-                
             }
 
             if (inventoryPanelOpen == false)

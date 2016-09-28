@@ -8,6 +8,19 @@ public class CharacterManager {
     private GameObject dogChar;
 
     private GameObject[] enemies;
+
+    public GameObject SelectedChar
+    {
+        get
+        {
+            return selectedChar;
+        }
+
+        set
+        {
+            selectedChar = value;
+        }
+    }
     
 	public void InitialiseChar () {
         //find player characters from hierarchy
@@ -28,11 +41,13 @@ public class CharacterManager {
             {
                 selectedChar = dogChar;
                 Debug.Log("Changed char to Dog");
+                Debug.Log(selectedChar);
 
             }else if (selectedChar == dogChar)
             {
                 selectedChar = boyChar;
                 Debug.Log("Changed char to Boy");
+                Debug.Log(selectedChar);
             }
 
         }

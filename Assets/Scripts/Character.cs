@@ -3,35 +3,40 @@ using System.Collections;
 
 public class Character {
 
-    public VisualCharacter visualCharacterScript;
+    //public VisualCharacter visualCharacterScript;
 
-    private string nameBoy;
-    private string nameDog;
+    private static string nameBoy;
+    private static string nameDog;
+    
+    private static int hpBoy;
+    private static int hpDog;
 
-    private int hpBoy;
-    private int hpDog;
+    private static int mpBoy;
+    private static int mpDog;
 
-    private int mpBoy;
-    private int mpDog;
+    private static int defBoy;
+    private static int defDog;
 
-    private int defBoy;
-    private int defDog;
+    private static int attBoy;
+    private static int attDog;
 
-
-    public string NameBoy { get; set; }
+    public string NameBoy { get { return nameBoy; } set { nameBoy = value; } }
     public string NameDog { get; set; }
 
-    public int HpBoy { get; set; }
-    public int HpDob { get; set; }
+    public int HpBoy { get { return hpBoy; } set { hpBoy = value; } }
+    public int HpDog { get { return hpDog; } set { hpDog = value; } }
+    
     public int MpBoy { get; set; }
     public int MpDog { get; set; }
     public int DefBoy { get; set; }
-    public int DefBDog { get; set; }
+    public int DefDog { get; set; }
 
-
-    void Start()
+    
+    //default constructor for Character
+    public Character()
     {
-        nameBoy = "Mihael";
+        
+        nameBoy = "Michael";
         nameDog = "Rufus";
         hpBoy = 30;
         hpDog = 60;
@@ -43,6 +48,7 @@ public class Character {
         //att
         defBoy = 0;
         defDog = 0;
+
     }
 
     
