@@ -3,18 +3,18 @@ using System.Collections;
 
 public class Armor : Item {
 
-    armorType curArmor;
+    enum armorType { none = 0, leather = 10, wood = 30, steel = 50, mithril = 70, elemental = 100 };
 
-    void Start()
+    armorType curArmor;
+    
+    public void addArmor()
     {
         curArmor = armorType.elemental;
 
-        Character myChar = new Character();
-        myChar.DefBoy = myChar.DefBoy + (int)curArmor;
-    }
-    
+        GameManager.instance.character.DefBoy += (int)curArmor;
         
+    }
+           
     
 }
 
-enum armorType { none = 0, leather = 10, wood = 30, steel = 50, mithril = 70, elemental = 100 };

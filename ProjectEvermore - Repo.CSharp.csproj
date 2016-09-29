@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ManaPanel.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\VisualCharacter.cs" />

@@ -4,17 +4,17 @@ using System.Collections;
 public class InventoryPanel : ManaPanel {
 
     //public static InventoryPanel instance = null;
+    public GameObject slot1;
+    public GameObject slot2;
+
+    private GameObject[] slots = new GameObject[2];
     private GameObject[] itemsFromInventory;
-
+    private GameObject[] items = new GameObject[10];
+    private GameObject go; //for prefab instantiation
     private bool inventoryPanelOpen;
-
     private int amountOfItemsInInventory;
 
-    private GameObject[] items = new GameObject[10];
-
-    //public int AmountOfItems { get; set; }
-
-    //private GameManager gameManagerScript;
+    //property for opening and closing the panel
     public bool InventoryPanelOpen
     {
         get
@@ -40,12 +40,6 @@ public class InventoryPanel : ManaPanel {
                     SetInvPanelItems(itemsFromInventory[0], 0);
                     SetInvPanelItems(itemsFromInventory[1], 1);
 
-                    //InventoryPanel.instance.SetInvPanelItems(itemsFromInventory[0], 0);
-                    //InventoryPanel.instance.SetInvPanelItems(itemsFromInventory[1], 1);
-
-                    //InventoryPanel.instance.InstantiateInvPanelItems();
-
-
                 }
 
                 Debug.Log("Inventory panel open");
@@ -55,40 +49,26 @@ public class InventoryPanel : ManaPanel {
             if (inventoryPanelOpen == false)
             {
                 Debug.Log("Inventory panel closed");
+                gameObject.SetActive(false);
             }
-
-
+            
         }
-    }
-
-    void OnEnable()
-    {
-        //find gmScript to get the amount of items in inv value..yeah, not a good way
-        // gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        //amountOfItemsInInventory = gameManagerScript.amountOfItemsInInventory;
-        RefreshPanel();
     }
 
     void Awake()
     {
-        //inventoryPanelOpen = true;
-        //Check if instance already exists
-        /*if (instance == null)
-        {
-            instance = this;
-            
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }*/
-
-        
-
+        //set  inventory slots to array for distribution in the item listing (no need for more in this test)
+        slots[0] = slot1;
+        slots[1] = slot2;
     }
-
+    void OnEnable()
+    {
+        RefreshPanel();
+    }
+    
     public void SetInvPanelItems(GameObject item, int index)
     {
+        //set the items that are to be included in the inventorypanel
         if (items[index] == null)
         { 
             items[index] = item;
@@ -97,31 +77,28 @@ public class InventoryPanel : ManaPanel {
         {
             Debug.Log("Already set " + items[index]);
         }
-        
+
     }
 
     public void InstantiateInvPanelItems()
     {
+        //get the amount of items added to inventory (in GamemManager)
         amountOfItemsInInventory = GameManager.instance.amountOfItemsInInventory;
         
         for (int i = 0; i < amountOfItemsInInventory; i++)
         {
-            GameObject tempItem = items[i].gameObject;
-            
-            //Debug.Log(!transform.FindChild(items[i].gameObject.name + "(Clone)"));
-
+     
             //look for child object of InventoryPanel
             //check if there exists prefabs, that have not yet been added there
-            if (!transform.Find(items[i].gameObject.name + "(Clone)"))
+            if (!GameObject.Find(items[i].gameObject.name + "(Clone)"))
             {
-                GameObject go = Instantiate(items[i]);
-                go.transform.parent = transform;
-                go.transform.position = new Vector2(transform.position.x/1.7f, go.transform.position.y);
+                go = Instantiate(items[i]) as GameObject;
+                go.transform.parent = slots[i].transform;
+                go.transform.position = new Vector2(slots[i].transform.position.x, slots[i].transform.position.y);
+                go.transform.localScale = new Vector2(1, 1);
             }
         }
+
     }
-
-   
-	
-
+    
 }

@@ -7,21 +7,10 @@ public class CharacterManager {
     private GameObject followingChar;
     private GameObject boyChar;
     private GameObject dogChar;
-
     private GameObject[] enemies;
 
-    public GameObject SelectedChar
-    {
-        get
-        {
-            return selectedChar;
-        }
-
-        set
-        {
-            selectedChar = value;
-        }
-    }
+    
+    public GameObject SelectedChar { get { return selectedChar; } set { selectedChar = value; } }
     
 	public void InitialiseChar () {
         //find player characters from hierarchy
@@ -39,17 +28,16 @@ public class CharacterManager {
 	}
     
     
-
+    //character change
     public void ChangeChar()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (selectedChar == boyChar)
             {
                 selectedChar = dogChar;
                 followingChar = boyChar;
-                Debug.Log("Changed char to Dog");
-                Debug.Log(selectedChar);
+                Debug.Log("Changed char to " + selectedChar);
                 GameManager.instance.visualCharacterScript.CurrentPlayer = selectedChar;
                 GameManager.instance.visualCharacterScript.CurrentFollower = followingChar;
 
@@ -58,8 +46,7 @@ public class CharacterManager {
             {
                 selectedChar = boyChar;
                 followingChar = dogChar;
-                Debug.Log("Changed char to Boy");
-                Debug.Log(selectedChar);
+                Debug.Log("Changed char to " + selectedChar);
                 GameManager.instance.visualCharacterScript.CurrentPlayer = selectedChar;
                 GameManager.instance.visualCharacterScript.CurrentFollower = followingChar;
             }

@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
 
-    
-    void OnGUI()
+    public Text nameTextBoy;
+    public Text nameTextDog;
+
+    public Text hpTextBoy;
+    public Text hpTextDog;
+
+    void Update()
     {
-        int test = 10;
-        GameManager.instance.character.HpDog = test;
+        nameTextBoy.text = GameManager.instance.character.NameBoy.ToString();
+        nameTextDog.text = GameManager.instance.character.NameDog.ToString();
 
+        hpTextBoy.text = "Health: " + GameManager.instance.character.HpBoy.ToString();
+        hpTextDog.text = "Health: " + GameManager.instance.character.HpDog.ToString();
 
-        //change these to UI text for health and mana
-        //kesken
-
-        float cameraPixelHeight = Camera.main.pixelHeight;
-        float cameraPixelWidth = Camera.main.pixelWidth;
-
-        GUI.Label(new Rect(cameraPixelWidth / 11f, cameraPixelHeight / 1.2f, 150, 30), "Boy Health: " + GameManager.instance.character.HpBoy);
-        GUI.Label(new Rect(cameraPixelWidth / 2f, cameraPixelHeight / 1.2f, 150, 30), "Dog Health: " + GameManager.instance.character.HpDog);
-        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GameManager.instance.character.HpBoy = GameManager.instance.character.HpBoy - 1;
+        }
     }
+        
 }

@@ -1,35 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIManager {
 
-    //Panels
-    //public InventoryPanel inventoryPanel = new InventoryPanel();
-    //public CharacterPanel characterPanel = new CharacterPanel();
-    
-    
-    public UIManager()
-    {
-        //inventoryPanel = ipGo.GetComponent<InventoryPanel>();
-        //characterPanel = cp;
-        //initialise panels
-        Initialize();
-        
-        
-    }
-
-    public void Initialize()
-    {
-        
-        //GameManager.instance.inventoryPanelScript.InitialisePanel();
-        //GameManager.instance.characterPanelScript.InitialisePanel();
-    }
+    public bool pauseMenuOpen;
 
     public void OpenPanels()
     {
+        if (Input.GetKeyDown(KeyCode.P) | pauseMenuOpen)
+        {
+            pauseMenuOpen = false;
+            if (GameManager.instance.menuButton.activeInHierarchy)
+            {
+                GameManager.instance.menuButton.SetActive(false);
+                Time.timeScale = 1;
+
+            }else if (!GameManager.instance.menuButton.activeInHierarchy)
+            {
+                GameManager.instance.menuButton.SetActive(true);
+                Time.timeScale = 0;
+            }
+
+
+        }
+
+        //open or close inventory panel
         if (Input.GetKeyDown(KeyCode.I))
         {
-            //open or close inventory panel
+            
             if (GameManager.instance.inventoryPanelScript.InventoryPanelOpen == false)
             {
                 GameManager.instance.inventoryPanelScript.InventoryPanelOpen = true;
@@ -41,10 +40,10 @@ public class UIManager {
             }
         }
 
+        //open or close character panel
         if (Input.GetKeyDown(KeyCode.C))
         {
             
-            //open or close inventory panel
             if (GameManager.instance.characterPanelScript.CharacterPanelOpen == false)
             {
                 GameManager.instance.characterPanelScript.CharacterPanelOpen = true;

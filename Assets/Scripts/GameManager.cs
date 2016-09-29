@@ -3,52 +3,32 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    //singleton type setup for GameManager
     public static GameManager instance = null;
-    public static bool isAlive;
-    public static int health;
-    //variables
-    
-    
-    public int amountOfItemsInInventory;
 
-    //private InventoryPanel inventoryPanelScript;
-    /*
-    private int mana;
-    private int level;
-    private int attack;
-    private int defence;
-    
-    */
-    //properties
-    /*public bool IsAlive { get; set; }
-    public int Health { get; set; }
-    public int Mana { get; set; }
-    public int Level { get; set; }
-    public int Attack { get; set; }
-    public int Defense { get; set; }
-    */
+    //item gameobjects listed here
     public GameObject goBow;
     public GameObject goSword;
 
-    public GameObject goInventoryPanel;
-    public GameObject goCharacterPanel;
-
+    public int amountOfItemsInInventory;
+    
     public InventoryPanel inventoryPanelScript;
     public CharacterPanel characterPanelScript;
     public VisualCharacter visualCharacterScript;
+    public GameObject menuButton;
 
+    //create instances
     public CharacterManager characterManager = new CharacterManager();
     public UIManager uiManager = new UIManager();
     public Inventory inventory = new Inventory();
-
-    
     public Character character = new Character();
-    //public static Character character = null;
+    public Armor armor = new Armor();
 
     private GameObject[] itemsFromInventory;
+
     void Awake()
     {
-        //Check if instance already exists
+        //Check if instance already exists, if so, destroy
         if (instance == null)
         {
             instance = this;
@@ -70,126 +50,16 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        isAlive = true;
-        health = 30;
-    }
-
     void Update()
     {
         characterManager.ChangeChar();
         uiManager.OpenPanels();
-
-
-        if (inventoryPanelScript.InventoryPanelOpen == true)
-        {
-            if (!goInventoryPanel.activeInHierarchy)
-            { 
-                InventoryPanelOpened();
-            }
-        }
-
-        if (inventoryPanelScript.InventoryPanelOpen == false)
-        {
-            if (goInventoryPanel.activeInHierarchy)
-            {
-                InventoryPanelClosed();
-            }
-        }
-
-        if (characterPanelScript.CharacterPanelOpen == true)
-        {
-            if (!goCharacterPanel.activeInHierarchy)
-            {
-                CharacterPanelOpened();
-            }
-        }
-
-        if (characterPanelScript.CharacterPanelOpen == false)
-        {
-            if (goCharacterPanel.activeInHierarchy)
-            {
-                CharacterPanelClosed();
-            }
-        }
-
     }
 
-    void InventoryPanelOpened()
+    public void PauseControl()
     {
-       if (goInventoryPanel == null)
-        {
-            //GameObject instance = Instantiate(Resources.Load("InventoryPanel", typeof(GameObject))) as GameObject;
 
-            //goInventoryPanel = instance;
-            //inventoryPanelScript = goInventoryPanel.GetComponent<InventoryPanel>();
-           
-        }
-        
-        if (goInventoryPanel != null)
-        {
-            /*
-            if (goInventoryPanel.activeSelf == false)
-            {
-                goInventoryPanel.SetActive(true);
-
-                //get the items in inventory
-                itemsFromInventory = inventory.ItemsInInventory;
-
-                //set items from inventory to inventory panel (I got stumped by this, so I had to come up with something)
-                //should check for length and expand from that, but here we set only bow and sword, as we now there is no more
-                inventoryPanelScript.SetInvPanelItems(itemsFromInventory[0], 0);
-                inventoryPanelScript.SetInvPanelItems(itemsFromInventory[0], 1);
-
-                //InventoryPanel.instance.SetInvPanelItems(itemsFromInventory[0], 0);
-                //InventoryPanel.instance.SetInvPanelItems(itemsFromInventory[1], 1);
-
-                //InventoryPanel.instance.InstantiateInvPanelItems();
-
-
-            }*/
-
-            //goInventoryPanel.amoun inventory.ItemsInInventory();
-
-            //inventory.GetInventory(); 
-
-        }
+        uiManager.pauseMenuOpen = true;
     }
-
     
-
-    void InventoryPanelClosed()
-    {
-        if (goInventoryPanel != null)
-        {
-            goInventoryPanel.SetActive(false);
-            
-        }
-    }
-
-    void CharacterPanelOpened()
-    {
-
-        if (goCharacterPanel == null)
-        {
-            //GameObject instance = Instantiate(Resources.Load("CharacterPanel", typeof(GameObject))) as GameObject;
-
-            //goCharacterPanel = instance;
-        }
-
-        if (goCharacterPanel != null)
-        {
-            goCharacterPanel.SetActive(true);
-
-        }
-    }
-
-    void CharacterPanelClosed()
-    {
-        if (goCharacterPanel != null)
-        {
-            goCharacterPanel.SetActive(false);
-        }
-    }
 }
