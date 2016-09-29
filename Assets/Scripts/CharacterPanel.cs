@@ -14,10 +14,7 @@ public class CharacterPanel : ManaPanel {
 
     private static bool characterPanelOpen;
     
-    void Start()
-    {
-        Debug.Log("1 " + healthText);
-    }
+    
 
     public bool CharacterPanelOpen
     {

@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         
         if (goInventoryPanel != null)
         {
+            /*
             if (goInventoryPanel.activeSelf == false)
             {
                 goInventoryPanel.SetActive(true);
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour
                 //InventoryPanel.instance.InstantiateInvPanelItems();
 
 
-            }
+            }*/
 
             //goInventoryPanel.amoun inventory.ItemsInInventory();
 

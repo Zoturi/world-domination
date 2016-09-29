@@ -17,6 +17,7 @@ public class Inventory {
         set
         {
             itemsInInventory = value;
+            Debug.Log("testte " + itemsInInventory);
         }
     }
 
