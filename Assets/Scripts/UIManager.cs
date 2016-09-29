@@ -4,8 +4,8 @@ using System.Collections;
 public class UIManager {
 
     //Panels
-    public InventoryPanel inventoryPanel = new InventoryPanel();
-    public CharacterPanel characterPanel = new CharacterPanel();
+    //public InventoryPanel inventoryPanel = new InventoryPanel();
+    //public CharacterPanel characterPanel = new CharacterPanel();
     
     
     public UIManager()
@@ -21,8 +21,8 @@ public class UIManager {
     public void Initialize()
     {
         
-        inventoryPanel.InitialisePanel();
-        characterPanel.InitialisePanel();
+        //GameManager.instance.inventoryPanelScript.InitialisePanel();
+        //GameManager.instance.characterPanelScript.InitialisePanel();
     }
 
     public void OpenPanels()
@@ -30,27 +30,28 @@ public class UIManager {
         if (Input.GetKeyDown(KeyCode.I))
         {
             //open or close inventory panel
-            if (inventoryPanel.InventoryPanelOpen == false)
+            if (GameManager.instance.inventoryPanelScript.InventoryPanelOpen == false)
             {
-                inventoryPanel.InventoryPanelOpen = true;
+                GameManager.instance.inventoryPanelScript.InventoryPanelOpen = true;
 
             }
-            else if (inventoryPanel.InventoryPanelOpen == true)
+            else if (GameManager.instance.inventoryPanelScript.InventoryPanelOpen == true)
             {
-                inventoryPanel.InventoryPanelOpen = false;
+                GameManager.instance.inventoryPanelScript.InventoryPanelOpen = false;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+            
             //open or close inventory panel
-            if (characterPanel.CharacterPanelOpen == false)
+            if (GameManager.instance.characterPanelScript.CharacterPanelOpen == false)
             {
-                characterPanel.CharacterPanelOpen = true;
+                GameManager.instance.characterPanelScript.CharacterPanelOpen = true;
             }
-            else if (characterPanel.CharacterPanelOpen == true)
+            else if (GameManager.instance.characterPanelScript.CharacterPanelOpen == true)
             {
-                characterPanel.CharacterPanelOpen = false;
+                GameManager.instance.characterPanelScript.CharacterPanelOpen = false;
             }
         }
 

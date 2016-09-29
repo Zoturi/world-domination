@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterManager {
     
     private GameObject selectedChar;
+    private GameObject followingChar;
     private GameObject boyChar;
     private GameObject dogChar;
 
@@ -26,28 +27,41 @@ public class CharacterManager {
         //find player characters from hierarchy
         boyChar = GameObject.FindGameObjectWithTag("PlayerBoy");
         dogChar = GameObject.FindGameObjectWithTag("PlayerDog");
+        
         //set default initial player character to boy
-        selectedChar = boyChar; 
+        selectedChar = boyChar;
+        followingChar = dogChar;
+
+        GameManager.instance.visualCharacterScript.CurrentPlayer = selectedChar;
+        GameManager.instance.visualCharacterScript.CurrentFollower = followingChar;
 
         Debug.Log("Starting game as " + selectedChar);
 	}
     
+    
+
     public void ChangeChar()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-
             if (selectedChar == boyChar)
             {
                 selectedChar = dogChar;
+                followingChar = boyChar;
                 Debug.Log("Changed char to Dog");
                 Debug.Log(selectedChar);
+                GameManager.instance.visualCharacterScript.CurrentPlayer = selectedChar;
+                GameManager.instance.visualCharacterScript.CurrentFollower = followingChar;
 
-            }else if (selectedChar == dogChar)
+            }
+            else if (selectedChar == dogChar)
             {
                 selectedChar = boyChar;
+                followingChar = dogChar;
                 Debug.Log("Changed char to Boy");
                 Debug.Log(selectedChar);
+                GameManager.instance.visualCharacterScript.CurrentPlayer = selectedChar;
+                GameManager.instance.visualCharacterScript.CurrentFollower = followingChar;
             }
 
         }

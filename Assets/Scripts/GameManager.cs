@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static int health;
     //variables
     
-   
+    
     public int amountOfItemsInInventory;
 
     //private InventoryPanel inventoryPanelScript;
@@ -35,11 +35,13 @@ public class GameManager : MonoBehaviour
 
     public InventoryPanel inventoryPanelScript;
     public CharacterPanel characterPanelScript;
+    public VisualCharacter visualCharacterScript;
 
     public CharacterManager characterManager = new CharacterManager();
     public UIManager uiManager = new UIManager();
     public Inventory inventory = new Inventory();
 
+    
     public Character character = new Character();
     //public static Character character = null;
 
@@ -55,20 +57,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        /*inventoryPanelScript = goInventoryPanel.GetComponent<InventoryPanel>();
-
-        InventoryPanel test = GameObject.Find("InventoryPanel").GetComponent<InventoryPanel>();
-
-        uiManager.inventoryPanel = test;
-
-        Debug.Log("InviGM: " + test);
-        */
-
-        characterManager.InitialiseChar();
-
         
-
+        //initialise characters
+        characterManager.InitialiseChar();
+        
         //add items that go in the inventory here
         inventory.ItemsInInventory[0] = goBow;
         inventory.ItemsInInventory[1] = goSword;
@@ -76,16 +68,12 @@ public class GameManager : MonoBehaviour
         //get the amount of items in the inventory, to use in InventoryPanel
         amountOfItemsInInventory = inventory.GetAmountOfItemsInInventory();
 
-        //inventory.GetInventory();
-
-        
     }
 
     void Start()
     {
         isAlive = true;
         health = 30;
-        
     }
 
     void Update()
@@ -94,7 +82,7 @@ public class GameManager : MonoBehaviour
         uiManager.OpenPanels();
 
 
-        if (uiManager.inventoryPanel.InventoryPanelOpen == true)
+        if (inventoryPanelScript.InventoryPanelOpen == true)
         {
             if (!goInventoryPanel.activeInHierarchy)
             { 
@@ -102,7 +90,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (uiManager.inventoryPanel.InventoryPanelOpen == false)
+        if (inventoryPanelScript.InventoryPanelOpen == false)
         {
             if (goInventoryPanel.activeInHierarchy)
             {
@@ -110,7 +98,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (uiManager.characterPanel.CharacterPanelOpen == true)
+        if (characterPanelScript.CharacterPanelOpen == true)
         {
             if (!goCharacterPanel.activeInHierarchy)
             {
@@ -118,7 +106,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (uiManager.characterPanel.CharacterPanelOpen == false)
+        if (characterPanelScript.CharacterPanelOpen == false)
         {
             if (goCharacterPanel.activeInHierarchy)
             {
@@ -184,14 +172,15 @@ public class GameManager : MonoBehaviour
 
         if (goCharacterPanel == null)
         {
-            GameObject instance = Instantiate(Resources.Load("CharacterPanel", typeof(GameObject))) as GameObject;
+            //GameObject instance = Instantiate(Resources.Load("CharacterPanel", typeof(GameObject))) as GameObject;
 
-            goCharacterPanel = instance;
+            //goCharacterPanel = instance;
         }
 
         if (goCharacterPanel != null)
         {
             goCharacterPanel.SetActive(true);
+
         }
     }
 

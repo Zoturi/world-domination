@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Character {
 
-    //public VisualCharacter visualCharacterScript;
-
     private static string nameBoy;
     private static string nameDog;
     
@@ -20,6 +18,7 @@ public class Character {
     private static int attBoy;
     private static int attDog;
 
+    
     public string NameBoy { get { return nameBoy; } set { nameBoy = value; } }
     public string NameDog { get; set; }
 
@@ -30,6 +29,7 @@ public class Character {
     public int MpDog { get; set; }
     public int DefBoy { get; set; }
     public int DefDog { get; set; }
+
 
     
     //default constructor for Character

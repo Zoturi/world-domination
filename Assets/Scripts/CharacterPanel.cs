@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CharacterPanel : ManaPanel {
+
+    public Text healthText;
+    public Text charDefText;
 
     public string charName;
     public int charHealth;
@@ -10,22 +14,10 @@ public class CharacterPanel : ManaPanel {
 
     private static bool characterPanelOpen;
     
-
-    public CharacterPanel() {
-        
-        /*
-        Armor myArmor = new Armor();
-        Character myChar = new Character(); //create reference
-
-        //get names for dog and boy
-        charBoyName = myChar.NameBoy;
-        charDogName = myChar.NameDog;
-
-        charBoyDef = myChar.DefBoy;
-        Debug.Log("Current defence is " + charBoyDef);
-        Debug.Log("Boys name: " + charBoyName);
-        */
-	}
+    void Start()
+    {
+        Debug.Log("1 " + healthText);
+    }
 
     public bool CharacterPanelOpen
     {
@@ -42,7 +34,6 @@ public class CharacterPanel : ManaPanel {
             {
                 Debug.Log("Character panel open");
                 
-
                 ShowStats();
             }
 
@@ -54,39 +45,33 @@ public class CharacterPanel : ManaPanel {
         }
     }
 
-    void ShowStats()
+    
+
+    public void ShowStats()
     {
         
         Debug.Log("Showing stats for selected character");
         //check which player is in use and get that players stats
-        if (GameManager.instance.characterManager.SelectedChar.name == "Boy")// kesken, onko pojan nimi tuo vai esim + (clone)?
+        if (GameManager.instance.characterManager.SelectedChar.name == "Boy")
         {
             charHealth = GameManager.instance.character.HpBoy;
             charDef = GameManager.instance.character.DefBoy;
+            
+            healthText.text = "Health: " + charHealth.ToString();
+            charDefText.text = "Defence: " + charDef.ToString();
         }
 
         if (GameManager.instance.characterManager.SelectedChar.name == "Dog")
         {
             charHealth = GameManager.instance.character.HpDog;
             charDef = GameManager.instance.character.DefDog;
+
+            healthText.text = "Health: " + charHealth.ToString();
+            charDefText.text = "Defence: " + charDef.ToString();
         }
 
 
     }
 
-    void OnGUI() //not used anymore
-    {
-       /*
-        if (characterPanelOpen)
-        {
-            float cameraPixelHeight = Camera.main.pixelHeight;
-            float cameraPixelWidth = Camera.main.pixelWidth;
-            GUI.Label(new Rect(cameraPixelWidth / 11f, cameraPixelHeight / 5.2f, 150, 30), "Name: " + charName);
-            GUI.Label(new Rect(cameraPixelWidth / 11f, cameraPixelHeight / 5.2f, 150, 30), "Name: " + charHealth);
-            GUI.Label(new Rect(cameraPixelWidth / 11f, cameraPixelHeight / 5.2f, 150, 30), "Name: " + charDef);
-            GUI.Label(new Rect(cameraPixelWidth / 11f, cameraPixelHeight / 5.2f, 150, 30), "Name: " + charAtt);
 
-        }
-        */
-    }
 }
