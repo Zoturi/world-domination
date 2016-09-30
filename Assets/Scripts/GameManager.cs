@@ -48,17 +48,22 @@ public class GameManager : MonoBehaviour
         //get the amount of items in the inventory, to use in InventoryPanel
         amountOfItemsInInventory = inventory.GetAmountOfItemsInInventory();
 
+        //example of adding armor to players. Should be used on pickup/drop/destroy/break etc implementation
+        character.ArmorBoy = Armor.armorType.steel;//add elemental armor for first player
     }
 
     void Update()
     {
-        characterManager.ChangeChar();
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            characterManager.ChangeChar();
+        }
+        
         uiManager.OpenPanels();
     }
 
     public void PauseControl()
     {
-
         uiManager.pauseMenuOpen = true;
     }
     

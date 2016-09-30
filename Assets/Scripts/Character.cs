@@ -21,6 +21,9 @@ public class Character {
     //lvl
     private static int lvlBoy;
     private static int lvlDog;
+    //armor
+    private static Armor.armorType armorBoy;
+    private static Armor.armorType armorDog;
 
     //properties for values
     //name
@@ -41,6 +44,11 @@ public class Character {
     //lvl
     public int LvlBoy { get { return lvlBoy; } set { lvlBoy = value; } }
     public int LvlDog { get { return lvlDog; } set { lvlDog = value; } }
+    //armor
+    public Armor.armorType ArmorBoy { get { return armorBoy; } set { armorBoy = value; } }
+
+    public Armor.armorType ArmorDog { get { return armorDog; } set { armorDog = value; } }
+
 
     //default constructor for Character
     public Character()
@@ -58,10 +66,9 @@ public class Character {
         attDog = 7;
         lvlBoy = 1;
         lvlDog = 1;
-        //weapon
+        armorBoy = Armor.armorType.elemental; //this is changed in gamemanager to steel, as an example
+        armorDog = Armor.armorType.leather;
         
-
-
     }
 
     

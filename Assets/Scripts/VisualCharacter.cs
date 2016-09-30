@@ -36,7 +36,6 @@ public class VisualCharacter : MonoBehaviour {
     {
         Controls();
         FollowOther();
-        
     }
 
     void Controls()
@@ -44,22 +43,20 @@ public class VisualCharacter : MonoBehaviour {
         //move player according to controls
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         currentPlayer.transform.position += move * moveSpeed * Time.deltaTime;
-        
     }
 
     void FollowOther()
     {
+        //get distance between following and playing char
         float distance = Vector2.Distance(currentPlayer.transform.position, currentFollower.transform.position);
-        Debug.Log(distance);
-
+        
+        //follower keeps its distance
         if (distance > 2)
         { 
             //follow
             currentFollower.transform.position = Vector2.MoveTowards(currentFollower.transform.position, CurrentPlayer.transform.position, Time.deltaTime * moveSpeed/2f);
             currentFollower.transform.right = currentPlayer.transform.position - currentFollower.transform.position; //rotate the following char to the player char
         }
-
-
 
     }
 }

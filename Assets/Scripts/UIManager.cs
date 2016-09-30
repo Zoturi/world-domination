@@ -8,7 +8,7 @@ public class UIManager {
 
     public void OpenPanels()
     {
-        if (Input.GetKeyDown(KeyCode.P) | pauseMenuOpen)
+        if (pauseMenuOpen)
         {
             pauseMenuOpen = false;
             if (GameManager.instance.menuButton.activeInHierarchy)
